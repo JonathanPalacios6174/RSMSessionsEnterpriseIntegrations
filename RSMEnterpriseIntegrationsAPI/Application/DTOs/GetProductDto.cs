@@ -1,8 +1,8 @@
-﻿namespace RSMEnterpriseIntegrationsAPI.Domain.Models
+﻿namespace RSMEnterpriseIntegrationsAPI.Application.DTOs
 {
-    public class Product
+    public class GetProductDto
     {
-        public int ProductID { get; set; }
+        public int? ProductID { get; set; }
         public string? Name { get; set; }
         public string? ProductNumber { get; set; }
         public bool MakeFlag { get; set; }
@@ -16,7 +16,7 @@
         public string? SizeUnitMeasureCode { get; set; }
         public string? WeightUnitMeasureCode { get; set; }
         public decimal? Weight { get; set; }
-        public int DaysToManufacture { get; set; }
+        public int? DaysToManufacture { get; set; }
         public string? ProductLine { get; set; }
         public string? Class { get; set; }
         public string? Style { get; set; }
@@ -27,14 +27,5 @@
         public DateTime? DiscontinuedDate { get; set; }
         public Guid rowguid { get; set; }
         public DateTime ModifiedDate { get; set; }
-
-        //Navigation properties
-        //public virtual ProductSubcategory ProductSubcategory { get; set; }
-        //public virtual ProductModel ProductModel { get; set; }
-        //public virtual UnitMeasure SizeUnitMeasure { get; set; }
-        //public virtual UnitMeasure WeightUnitMeasure { get; set; }
-
     }
 }
-
-
