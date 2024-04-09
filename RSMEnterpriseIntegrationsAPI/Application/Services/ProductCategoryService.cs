@@ -4,7 +4,7 @@ using RSMEnterpriseIntegrationsAPI.Domain.Models;
 
 namespace RSMEnterpriseIntegrationsAPI.Application.Services
 {
-    public class ProductCategoryService:IProductCategoryService
+    public class ProductCategoryService : IProductCategoryService
     {
         private readonly IProductCategoryRepository _productCategoryService;
 
@@ -29,22 +29,24 @@ namespace RSMEnterpriseIntegrationsAPI.Application.Services
             }
             return productsDto;
         }
-        public Task<int> CreateProduct(ProductCategory productCategory)
+       
+
+        public Task<int> CreateProductCategory(CreateProductCategoryDto productCategoryDto)
         {
             throw new NotImplementedException();
         }
 
-        public Task<int> DeleteProduct(ProductCategory productCategory)
+        public Task<int> UpdateProductCategory(UpdateProductCategoryDto productCategoryDto)
+        {
+            throw new NotImplementedException();
+        }
+
+        public Task<int> DeleteProductCategory(int id)
         {
             throw new NotImplementedException();
         }
 
         public Task<ProductCategory?> GetProductById(int id)
-        {
-            throw new NotImplementedException();
-        }
-
-        public Task<int> UpdateProduct(ProductCategory productCategory)
         {
             throw new NotImplementedException();
         }

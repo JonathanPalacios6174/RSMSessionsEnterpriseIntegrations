@@ -11,6 +11,17 @@ namespace RSMEnterpriseIntegrationsAPI.Application.Services
         {
             _productRepository = productRepository;
         }
+
+        public Task<int> CreateProduct(CreateProductDto ProductDto)
+        {
+            throw new NotImplementedException();
+        }
+
+        public Task<int> DeleteProduct(int id)
+        {
+            throw new NotImplementedException();
+        }
+
         public async Task<IEnumerable<GetProductDto>> GetAll()
         {
             var Products = await _productRepository.GetAllProducts();
@@ -26,6 +37,16 @@ namespace RSMEnterpriseIntegrationsAPI.Application.Services
                 productsDto.Add(dto);
             }
             return productsDto;
+        }
+
+        public Task<GetProductDto?> GetProductById(int id)
+        {
+            throw new NotImplementedException();
+        }
+
+        public Task<int> UpdateProduct(UpdateProductDto ProductDto)
+        {
+            throw new NotImplementedException();
         }
     }
 }

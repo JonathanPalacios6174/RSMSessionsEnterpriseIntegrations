@@ -1,11 +1,13 @@
 ﻿using Microsoft.AspNetCore.Mvc;
+using RSMEnterpriseIntegrationsAPI.Application.DTOs;
 using RSMEnterpriseIntegrationsAPI.Domain.Interfaces;
 
 namespace RSMEnterpriseIntegrationsAPI.Controllers
 {
     [Route("api/[controller]")]
     [ApiController]
-    public class ProductCategoryController:ControllerBase
+    public class ProductCategoryController : ControllerBase
+
     {
         private readonly IProductCategoryService _productCategoryService;
 
@@ -19,6 +21,29 @@ namespace RSMEnterpriseIntegrationsAPI.Controllers
         {
             return Ok(await _productCategoryService.GetAll());
 
+        }
+        [HttpGet("Get")]
+        public async Task<IActionResult> Get([FromQuery] int id)
+        {
+            return Ok(await _productCategoryService.GetProductById(id));
+        }
+
+        [HttpDelete("Delete/{id:int}")]
+        public async Task<IActionResult> Delete(int id)
+        {
+            return Ok(await _productCategoryService.DeleteProductCategory(id));
+        }
+
+        [HttpPost("Create")]
+        public async Task<IActionResult> Create(CreateProductCategoryDto dto)
+        {
+            return Ok(await _productCategoryService.CreateProductCategory(dto));
+        }
+
+        [HttpPut("Update")]
+        public async Task<IActionResult> Update(UpdateProductCategoryDto dto)
+        {
+            return Ok(await _productCategoryService.UpdateProductCategory(dto));
         }
     }
 }
