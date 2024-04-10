@@ -12,9 +12,11 @@ namespace RSMEnterpriseIntegrationsAPI.Infrastructure.Repositories
         {
             _dbContext = dbContext;
         }
-        public Task<int> CreateProductCategory(ProductCategory productCategory)
+        public async Task<int> CreateProductCategory(ProductCategory productCategory)
         {
-            throw new NotImplementedException();
+
+            await _dbContext.AddAsync(productCategory);
+            return await _dbContext.SaveChangesAsync();
         }
 
         public Task<int> DeleteProductCategory(ProductCategory productCategory)
@@ -29,14 +31,18 @@ namespace RSMEnterpriseIntegrationsAPI.Infrastructure.Repositories
               .ToListAsync();
         }
 
-        public Task<ProductCategory?> GetProductCategoryById(int id)
+        public async Task<ProductCategory?> GetProductCategoryById(int? id)
         {
-            throw new NotImplementedException();
+            return await _dbContext.ProductCategories
+               .AsNoTracking()
+               .FirstOrDefaultAsync(d => d.ProductCategoryID == id);
         }
 
-        public Task<int> UpdateProductCategory(ProductCategory productCategory)
+        public async Task<int> UpdateProductCategory(ProductCategory productCategory)
         {
-            throw new NotImplementedException();
+            _dbContext.Update(productCategory);
+
+            return await _dbContext.SaveChangesAsync();
         }
     }
 }

@@ -1,6 +1,8 @@
 ﻿using RSMEnterpriseIntegrationsAPI.Application.DTOs;
+using RSMEnterpriseIntegrationsAPI.Application.Exceptions;
 using RSMEnterpriseIntegrationsAPI.Domain.Interfaces;
 using RSMEnterpriseIntegrationsAPI.Domain.Models;
+using RSMEnterpriseIntegrationsAPI.Infrastructure.Repositories;
 
 namespace RSMEnterpriseIntegrationsAPI.Application.Services
 {
@@ -31,14 +33,30 @@ namespace RSMEnterpriseIntegrationsAPI.Application.Services
         }
        
 
-        public Task<int> CreateProductCategory(CreateProductCategoryDto productCategoryDto)
+        public async Task<int> CreateProductCategory(CreateProductCategoryDto productCategoryDto)
         {
-            throw new NotImplementedException();
+            ProductCategory product = new()
+            {
+
+                Name = productCategoryDto.Name,
+                ModifiedDate = productCategoryDto.ModifiedDate
+
+            };
+
+            return await _productCategoryService.CreateProductCategory(product);
         }
 
-        public Task<int> UpdateProductCategory(UpdateProductCategoryDto productCategoryDto)
+        public async Task<int> UpdateProductCategory(UpdateProductCategoryDto productCategoryDto)
         {
-            throw new NotImplementedException();
+            if (productCategoryDto is null)
+            {
+                throw new BadRequestException("Department info is not valid.");
+            }
+            var department = await ValidateCategoryExistence(productCategoryDto.ProductCategoryID);
+
+            department.Name = string.IsNullOrWhiteSpace(productCategoryDto.Name) ? department.Name : productCategoryDto.Name;
+
+            return await _productCategoryService.UpdateProductCategory(department);
         }
 
         public Task<int> DeleteProductCategory(int id)
@@ -50,5 +68,14 @@ namespace RSMEnterpriseIntegrationsAPI.Application.Services
         {
             throw new NotImplementedException();
         }
+
+        private async Task<ProductCategory> ValidateCategoryExistence(int? id)
+        {
+            var existingCategory = await _productCategoryService.GetProductCategoryById(id)
+                ?? throw new NotFoundException($"Category with Id: {id} was not found.");
+
+            return existingCategory;
+        }
+
     }
 }

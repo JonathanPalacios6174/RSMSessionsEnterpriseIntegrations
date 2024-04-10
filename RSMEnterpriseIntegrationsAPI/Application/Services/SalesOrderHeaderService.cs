@@ -1,16 +1,18 @@
-﻿using RSMEnterpriseIntegrationsAPI.Domain.Interfaces;
+﻿using RSMEnterpriseIntegrationsAPI.Application.DTOs;
+using RSMEnterpriseIntegrationsAPI.Domain.Interfaces;
 using RSMEnterpriseIntegrationsAPI.Domain.Models;
 
 namespace RSMEnterpriseIntegrationsAPI.Application.Services
 {
-    public class SalesOrderHeaderService:ISalesOrderHeaderService
+    public class SalesOrderHeaderService : ISalesOrderHeaderService
     {
-        public Task<int> CreateSalesOrderHeader(SalesOrderHeader salesOrderHeader)
+        
+        public Task<int> CreateSalesOrderHeader(CreateSalesOrderHeaderDto salesOrderHeaderDto)
         {
             throw new NotImplementedException();
         }
 
-        public Task<int> DeleteSalesOrderHeader(SalesOrderHeader salesOrderHeader)
+        public Task<int> DeleteSalesOrderHeader(int id)
         {
             throw new NotImplementedException();
         }
@@ -20,12 +22,12 @@ namespace RSMEnterpriseIntegrationsAPI.Application.Services
             throw new NotImplementedException();
         }
 
-        public Task<SalesOrderHeader?> GetSalesById(int id)
+        public Task<SalesOrderHeader?> GetSalesOrderHeaderServiceById(int id)
         {
             throw new NotImplementedException();
         }
 
-        public Task<int> UpdateSalesOrderHeader(SalesOrderHeader salesOrderHeader)
+        public Task<int> UpdateSalesOrderHeader(UpdateSalesOrderHeaderDto salesOrderHeaderDto)
         {
             throw new NotImplementedException();
         }

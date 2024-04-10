@@ -1,13 +1,14 @@
-﻿using RSMEnterpriseIntegrationsAPI.Domain.Models;
+﻿using RSMEnterpriseIntegrationsAPI.Application.DTOs;
+using RSMEnterpriseIntegrationsAPI.Domain.Models;
 
 namespace RSMEnterpriseIntegrationsAPI.Domain.Interfaces
 {
     public interface ISalesOrderHeaderService
     {
-        Task<SalesOrderHeader?> GetSalesById(int id);
+        Task<SalesOrderHeader?> GetSalesOrderHeaderServiceById(int id);
         Task<IEnumerable<SalesOrderHeader>> GetAllSalesOrderHeaders();
-        Task<int> CreateSalesOrderHeader(SalesOrderHeader salesOrderHeader);
-        Task<int> UpdateSalesOrderHeader(SalesOrderHeader salesOrderHeader);
-        Task<int> DeleteSalesOrderHeader(SalesOrderHeader salesOrderHeader);
+        Task<int> CreateSalesOrderHeader(CreateSalesOrderHeaderDto salesOrderHeaderDto);
+        Task<int> UpdateSalesOrderHeader(UpdateSalesOrderHeaderDto salesOrderHeaderDto);
+        Task<int> DeleteSalesOrderHeader(int id);
     }
 }
